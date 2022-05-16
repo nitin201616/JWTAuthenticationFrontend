@@ -1,0 +1,22 @@
+<form [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+    <div class="alert alert-danger" *ngIf="error">
+        {{error}}
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Username</label>
+        <input type="text" class="form-control" name="email" placeholder="Enter username" formControlName="email">
+            <div *ngIf="f?.['email']?.['touched'] && f?.['email']?.errors?.['required']">
+                Please enter username
+            </div>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" name="password" placeholder="Enter password" formControlName="password">
+        <div *ngIf="f?.['password']?.['touched'] && f?.['password']?.errors?.['required']">
+            Please enter password
+        </div>
+    </div>
+        <button type="submit" 
+        class="btn btn-primary"
+        [disabled]="!loginForm.valid">Submit</button>
+</form>

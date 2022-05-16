@@ -1,0 +1,39 @@
+<form [formGroup]="signUpForm" (ngSubmit)="loginSubmit()">
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" name="name" placeholder="Enter Name" formControlName="name">
+        <div *ngIf="sfv?.['name']?.['touched'] && sfv?.['name']?.errors?.['required']">
+            Please enter Name
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" class="form-control" name="email" placeholder="Enter Email" formControlName="email">
+        <div *ngIf="sfv?.['email']?.['touched'] && sfv?.['email']?.errors?.['required']">
+            Please enter Email
+        </div>
+        <div *ngIf="sfv?.['email']?.errors?.['email']">
+            Please enter valid Email
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" name="password" placeholder="Enter password" formControlName="password">
+        <div *ngIf="sfv?.['password']?.['touched'] && sfv?.['password']?.errors?.['required']">
+            Please enter password
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="confirmPassword" class="form-label">Confirm Password</label>
+        <input type="confirmPassword" class="form-control" name="confirmPassword" placeholder="Enter Password again!" formControlName="confirmPassword">
+        <div *ngIf="sfv?.['confirmPassword']?.['touched'] && sfv?.['confirmPassword']?.errors?.['required']">
+            Please enter password again!
+        </div>
+        
+    </div>
+    <div class="alert alert-danger" *ngIf="error.confirmPassword">
+        {{error.confirmPassword}}
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!signUpForm.valid">Submit</button>
+</form>
